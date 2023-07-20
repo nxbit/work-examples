@@ -21,3 +21,5 @@
 - Apps Launcher
 - Easy Feedback Form
 - Easy Employee Search
+
+## Links, IPs, Paths, basically anything identifiable and unique to the workplace has been edited out.
