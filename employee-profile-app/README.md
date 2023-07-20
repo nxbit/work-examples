@@ -2,7 +2,9 @@
 
 ## <p style="text-align:center">MeCard Project</p>
 
-<img width="45%" src="https://github.com/nxbit/work-examples/blob/employee-profile-app/employee-profile-app/mecard_leadership_landing.png?raw=true"/>
+<img width="45%" src="https://github.com/nxbit/work-examples/blob/main/employee-profile-app/mecard_leadership_landing.png"/>
+
+
 
 **The Opportunity**: When leaders would meet with their employees, they need a quick way to become familar with that employee.
 
