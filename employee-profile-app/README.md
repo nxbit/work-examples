@@ -28,10 +28,3 @@
 
 ## Links, IPs, Paths, basically anything identifiable and unique to the workplace has been edited out.
 
-<style>
-  .meCardScreenshot{
-    height: 20rem;
-    width: auto;
-    margin-left:23%
-  }
-</style>
