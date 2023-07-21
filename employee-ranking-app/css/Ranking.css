@@ -1,0 +1,270 @@
+body {
+    /* Color #003057 is the color for Production*/
+    background-color: #003057;
+}
+#MainPage {
+    width: 100vw;
+    height: calc(100vh - 132px);
+}
+#rankListTable {
+    width: 100%;
+    min-width: 1134px;
+    height: calc(100vh - 132px);
+    background-color: #343A40;
+}
+.floatFooter {
+    bottom: 0;
+    background-color: #343A40;
+    color: white;
+    height: 66px;
+    width: 100%;
+    padding: 15px;
+}
+.floatLink {
+    cursor: pointer;
+    float: left;
+    vertical-align: middle;
+}
+#subMenuBar {
+    display: inline-block;
+    min-width: 1134px;
+    padding: 4px;
+    background-color: #E8E8E8;
+    width: 100%;
+    border-bottom: 1px solid #AAAAAA;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-left: 10px;
+    float: left;
+}
+#fileDloadToast {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: yellow;
+}
+.viewChangeToast {
+    position: absolute;
+    top: 0;
+    right: 50vw;
+}
+
+.tabulator-headers {
+    font-size: .8rem;
+}
+.tabulator-cell
+{
+    font-size: .8rem;
+}
+
+.tabulator-table {
+    /* Set Padding at 0 to Header and Table Body Margins lineup*/
+    padding: 0px;
+}
+.tabulator{
+    padding: 0px;
+    border: 0px;    
+   
+}
+.tabulator-col-title {
+    text-align: center;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#rankListTable {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: auto;
+}
+.monthSelBox{
+    border: none;
+    background-color: none;
+}
+.tabulator-cell {
+    text-align: center;
+}
+.bg-light {
+    background-color: #E8e8e8;
+}
+.agentImg {
+    position: relative;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 10px solid #5682CB;
+    /* overflow: hidden;*/
+}
+.currentHeader{
+   
+    width: 25px;
+}
+.currWeightTable {
+    border-radius: 5px !important;
+    border-collapse: collapse !important;
+    text-align: center;
+    width: 100%;
+    table-layout: fixed;
+    font-size: 12px;
+    border: 0px;
+}
+
+.metricWegihtTable {
+    border-radius: 5px !important;
+    border-collapse: collapse !important;
+    text-align: center;
+    width: 700px;
+    table-layout: fixed;
+    font-size: 12px;
+    border: 0px;
+}
+
+    .metricWegihtTable tr:hover {
+        background-color: white;
+    }
+
+.monthsTable {
+    border-radius: 5px !important;
+    border-collapse: collapse !important;
+    text-align: center;
+    width: 300px;
+    table-layout: fixed;
+    font-size: 12px;
+    border: 0px;
+    
+}
+    .monthsTable tr:hover {
+        background-color: white;
+    }
+
+.currWeightTable tr:hover {
+    background-color: white;
+}
+.currWeightHeader {
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #BABABA;
+    -moz-border-radius: 5px 0 0 0 !important;
+}
+
+.monthsTableHeader {
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #BABABA;
+    -moz-border-radius: 5px 0 0 0 !important;
+    
+}
+
+.metricWeightTableHeader {
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #BABABA;
+    -moz-border-radius: 5px 0 0 0 !important;
+}
+.totalsRow{
+    font-weight: bold;
+}
+
+.newHireToggle{
+    visibility:hidden;
+}
+.SiteRankToggle{
+    visibility:hidden;
+}
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://repairreporting.corp.chartercom.com/img/MnyxU.gif");
+    background-repeat: no-repeat;
+    background-color: rgba(120, 120, 120, 0.8);
+    background-position: center;
+}
+
+#iedetected {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: center;
+    font-size: larger;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#viewchangeDiv {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://repairreporting.corp.chartercom.com/img/MnyxU.gif");
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: center;
+    font-size: larger;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#MainPage{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar-brand{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.btn-secondary {
+    background-color: #29648A;
+    border-color: #6c757d;
+}
+
+#RankTitle {
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.bidRanksBtn {
+    background-color: #29648A;
+    border-color: #6c757d;
+}
+#bidMonthSelectionBtn{
+    display: none;
+}
+.weightedRanksGrid{
+    align-content: center;
+    text-align: center;
+}
+.weightedRanksGridHeader {
+    align-content: center;
+    text-align: center;
+}
+
+.navbar-collapse.collapse {
+    display: block !important;
+}
+
+.navbar-nav > li, .navbar-nav {
+    float: left !important;
+}
+
+    
+
+.navbar-right {
+    float: right !important;
+}
