@@ -2,7 +2,7 @@
 
 ## <p style="text-align:center">VR Ranking Project</p>
 
-<img width="45%" src="https://github.com/nxbit/work-examples/blob/employee_ranking_project/employee-ranking-app/rankingscreenshot.png"/>
+<img width="45%" src="https://github.com/nxbit/work-examples/blob/main/employee-ranking-app/rankingscreenshot.png?raw=true"/>
 
 
 **The Opportunity**: Every month employees are offered the chance to change their work schedule. These opportunities are offerd based on performance.
