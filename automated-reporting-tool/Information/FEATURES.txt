@@ -1,0 +1,17 @@
+﻿Current Features:
+
+- SQL Login Test
+	- Standard Authentication
+- Automated Date Range Refresh
+- Single File Refresh
+- Multiple File Refresh
+- Table Status Check
+	- Data updated through date
+	- Data Last updated date
+- Update tiles feature
+- Progress Meter for sql file uploads
+- Progress Meter for date checks
+- Automated AUX File Update
+- Automated DSR File Update
+- Automated IRIS File Update
+- Automated Ruby File Update
