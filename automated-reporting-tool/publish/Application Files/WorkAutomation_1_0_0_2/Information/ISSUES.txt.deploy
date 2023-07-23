@@ -1,0 +1,19 @@
+ISSUES:
+
+1.0 - Multiple File Upload Tool not wokring
+	1.1 - Multiple File Upload tool fails during long upload processes
+		1.1.a - Loop process was setup to accept list of select files which need to be uploaded
+					Loop then iterates only on selected items in List w/o create unessary additional objects. 
+2.0 - Delete table not being called
+	2.1 - Delete found not to be running on upload loop or single file loop
+		2.1.a - Delete Range and Delete Table have been included in the nessary locations
+
+3.0 - Long time out perod on SQL server fails
+
+4.0 - Tiles update tool does not create backupfile of template file. 
+
+5.0 - DSR Output creates two Message Boxes. 
+ 5.1 - Issue Resloved
+
+6.0 - Final Agent Filtering on DSR only sorts the Weighted Column and not the entire dataset. 
+	6.1 - Issue Resloved
