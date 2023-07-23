@@ -8,7 +8,7 @@
 <img src="./screenshots/LeadQueue_Dashboard.JPG">
 <img src="./screenshots/LeadQueue_Charts.jpg">
 
-### Agnet Call Queue
+### Agent Call Queue
 <img src="./screenshots/QueueReport_Dashboard.JPG">
 <img src="./screenshots/QueueReport_Charts.JPG">
 
