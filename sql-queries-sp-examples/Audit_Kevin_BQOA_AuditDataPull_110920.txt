@@ -1,0 +1,72 @@
+SET NOCOUNT ON;
+;
+DECLARE @FiscalStart datetime;
+DECLARE @FiscalNom numeric(15,1);
+SET @FiscalStart = (CASE
+              WHEN DATEPART(dd,GETDATE()) < 29 THEN DATEADD(d,28-DATEPART(dd,GETDATE()),GETDATE())
+              ELSE DATEADD(m,1,DATEADD(d,-1*(DATEPART(dd,GETDATE())-28),GETDATE()))END);
+;
+SET @FiscalNom = DATEDIFF(d,'12/30/1899',DateAdd(m,-1,@FiscalStart));
+;
+with roster as(
+SELECT case when w.STATUSID = 1 THEN 'Active' else '-' END [Status]
+	,m.FIRSTNAME+ ' ' + m.LASTNAME Manager
+	,m.ENTITYACCOUNT ManagerPID
+	,m.NETIQWORKERID ManagerPSID
+	,s.FIRSTNAME+ ' ' + s.LASTNAME Supervisor
+	,s.ENTITYACCOUNT SupervisorPID
+	,s.NETIQWORKERID SupervisorPSID
+	,w.SAMACCOUNTNAME,
+	w.ENTITYACCOUNT PID
+	,w.NETIQWORKERID
+	,w.FIRSTNAME+ ' ' + w.LASTNAME EmpName
+	,jc.TITLE EmpTitle
+	,s.SERVICEDATE
+	,w.LEGACYWORKERID
+	,CONCAT(l.City,' ',l.State) [cityState]
+FROM MiningSwap.dbo.PROD_WORKERS w with(nolock)
+INNER JOIN MiningSwap.dbo.PROD_DEPARTMENTS d with(nolock) on w.DEPARTMENTID=d.DEPARTMENTID
+LEFT OUTER JOIN MiningSwap.dbo.PROD_WORKERS s with(nolock) on w.SUPERVISORID=s.WORKERID
+LEFT OUTER JOIN MiningSwap.dbo.PROD_WORKERS m with(nolock) on s.SUPERVISORID=m.WORKERID
+LEFT OUTER JOIN MiningSwap.dbo.PROD_JOB_CODES jc with(nolock) on w.JOBCODEID=jc.JOBCODEID
+LEFT OUTER JOIN MiningSwap.dbo.PROD_LOCATIONS l with(nolock) on w.LOCATIONID=l.LOCATIONID
+)
+
+
+
+SELECT roster.[Status], 
+roster.Manager, 
+roster.Supervisor,
+roster.SupervisorPSID,
+roster.NETIQWORKERID [Agent PSID],
+format(DATEADD(dd, -(DATEPART(dw, ad.Publisheddatetime)-7), ad.Publisheddatetime),'d') WESat,
+CASE
+       WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) between 0 and 3 THEN '1 to 3 mos'
+              WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) between 4 and 6 THEN '>3 to 6 mos'
+              WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) between 7 and 9 THEN '>6 to 9 mos'
+              WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) between 10 and 12 THEN '>9 to 12 mos'
+              WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) between 13 and 24 THEN '>12 to 24 mos'
+              WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) between 25 and 36 THEN '>24 to 36 mos'
+              WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) between 37 and 48 THEN '>36 to 48 mos'
+              WHEN DATEDIFF(m,roster.SERVICEDATE,GETDATE()) > 48 THEN '>48 mos'
+              ELSE ''
+       END [Service Tenure],
+	   'BQOA' [Source],
+	   [EvalID] [Entry #],
+	   roster.cityState,
+	   sroster.NETIQWORKERID [CoachPSID],
+	   roster.NETIQWORKERID [AgentPSID],
+	   format(ad.Publisheddatetime,'d') [Interaction Date],
+	   ad.[Behavior Coached] [Primary Reason],
+	   roster.EmpTitle
+
+
+
+
+
+
+FROM MiningSwap.dbo.OUTLIER_AUDIT_DETAILS ad with(nolock)
+LEFT JOIN roster ON ad.pid = roster.PID
+LEFT JOIN roster sroster ON ad.[Evaluator ID] = sroster.PID
+WHERE (Question = 'Behavior Coached' OR Question = 'Other') AND ad.[Publisheddatetime] >= Dateadd(d,1,DateAdd(m,-2,@FiscalStart))
+ORDER BY ad.EvalID DESC

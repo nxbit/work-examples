@@ -1,0 +1,32 @@
+SET NOCOUNT ON;
+;
+/*
+Attempt at pulling by agent by day for rolling 42 days results for ETD OOC;
+;
+063020:	The flags for logging OOC are in question;
+;
+*/
+;
+DECLARE @eDate date;
+DECLARE @sDate date;
+;
+;
+SET @eDate = DATEADD(d,-1,getdate());/*Shift End date to yesterday;*/
+SET @sDate = DATEADD(d,-42,getdate());/*Shift Start date 42 days back;*/
+;
+;
+SELECT REPLACE([CreatedByHRMarket],'CC-','')[CreatedByHRMarket]
+	,[CreatedByUserPID]
+	,[CreateDateNoTime]
+	,COUNT(DISTINCT case when icf16.[Data] = 'Yes' THEN i.IssueID ELSE NULL END) ETD_OCC
+	,COUNT(DISTINCT i.IssueID) Tickets
+FROM [ReportSabatini].[dbo].[v_Extract_Issues] i with(nolock)
+left join [ReportSabatini].[dbo].IssueCustomField icf16 (NOLOCK) ON i.IssueId = icf16.IssueId and icf16.ServiceId = 'OutofComp'
+left join [ReportSabatini].[dbo].IssueCustomField icf17 (NOLOCK) ON i.IssueId = icf17.IssueId and icf17.ServiceId = 'OutofCompReason'
+WHERE CAST(i.CreateDateNoTime as date) between @sDate and @eDate
+	and ([CreatedByHRTitle] LIKE '%Video%' or CreatedByHRTitle='Rep, Customer Service Repair')
+	and i.Category LIKE '%escalate%dispat%'
+GROUP BY REPLACE([CreatedByHRMarket],'CC-','')
+	,[CreatedByUserPID]
+	,[CreateDateNoTime]
+;
